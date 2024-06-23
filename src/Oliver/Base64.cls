@@ -22,7 +22,7 @@ ClassMethod B64EncodeStream(pStream As %Stream.Object, pAddCRLF As %Boolean = 0)
         */
         set tBinaryText=$ZCONVERT(tChunk,"O","UTF8")
         
-        do tEncodedStream.Write($System.Encryption.Base64Encode(tChunk,'pAddCRLF))
+        do tEncodedStream.Write($System.Encryption.Base64Encode(tBinaryText,'pAddCRLF))
         if (pAddCRLF && 'pStream.AtEnd) {
             do tEncodedStream.Write($c(13,10))
         }
@@ -53,9 +53,9 @@ ClassMethod B64EncodeWordDoc(pWordDoc As %String = "/ICS/jira/oliver1.docx", pAd
         Note: Base 64 encoding is not able to encode a string which contains unicode (2 byte) characters. 
         If you need to Base 64 encode an unicode string, you should first translate the string to UTF8 format, then encode it.
         */
-        //set tBinaryText=$ZCONVERT(tChunk,"O","UTF8")
+        set tBinaryText=$ZCONVERT(tChunk,"O","UTF8")
         
-        do tEncodedStream.Write($System.Encryption.Base64Encode(tChunk,'pAddCRLF))
+        do tEncodedStream.Write($System.Encryption.Base64Encode(tBinaryText,'pAddCRLF))
         if (pAddCRLF && 'pStream.AtEnd) {
             do tEncodedStream.Write($c(13,10))
         }
